@@ -27,6 +27,34 @@ class MemoListAPIView(APIView):
         return Response(seralizer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class MemoDetailAPIView(APIView):
+
+    def get_object(self, slug):
+        try:
+            return Article.objects.get(slug=slug)
+        except Article.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def get(self, request, slug):
+        memo = self.get_object(slug)
+        serializer = MemoSerializer(memo)
+        return Response(serializer.data)
+
+    def put(self, request, slug):
+        memo = self.get_object(slug)
+        serializer = MemoSerializer(memo, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, id):
+        memo = self.get_object(slug)
+        memo.delete()
+        return Response(status= status.HTTP_204_NO_CONTENT)
+
+
 
 
 
