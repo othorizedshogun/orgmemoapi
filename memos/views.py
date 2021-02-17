@@ -31,8 +31,8 @@ class MemoDetailAPIView(APIView):
 
     def get_object(self, slug):
         try:
-            return Article.objects.get(slug=slug)
-        except Article.DoesNotExist:
+            return Memo.objects.get(slug=slug)
+        except Memo.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def get(self, request, slug):
