@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import random
 # Create your models here.
 
 
@@ -9,7 +10,7 @@ class Memo(models.Model):
 	full_name = models.CharField(max_length=65)
 	position = models.CharField(max_length=65)
 	content = models.TextField()
-	date_posted = models.DateTimeField(timezone.now)
+	date_posted = models.DateTimeField(default=timezone.now)
 
 
 	""" Generate Slug """
