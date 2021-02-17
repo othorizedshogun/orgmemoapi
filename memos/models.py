@@ -28,3 +28,7 @@ class Memo(models.Model):
 
 	def __str__(self):
 		return self.title + ' - ' + self.full_name + '('+self.position+')'
+
+
+	class Meta:
+    		ordering = ['-date_posted']
