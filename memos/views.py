@@ -10,7 +10,7 @@ from .serializers import MemoSerializer
 
 
 # Create your views here.
-
+""" APIView fro the list of Memos """
 class MemoListAPIView(APIView):
 
     def get(self, request):
